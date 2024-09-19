@@ -1,19 +1,23 @@
-let menu = document.querySelectorAll(".menu ul li")
-let sub = document.querySelectorAll(".sub>li")
 
-function my(){
-  menu.forEach(function(v,k){
-    v.onmouseleave = function(){
-      sub[k].classList.remove("on");
-    }
+
+$(function(){
+
+  $(".gnb li").mouseenter(function(){
+    let i = $(this).index();
+    $(".bg").css("opacity", "1");
+    $(".sub>li").removeClass("on");
+    $(".sub>li").eq(i).addClass("on")
   })
-}
 
-menu.forEach(function(v,k){
-  my();
-  v.onmouseenter = function(){
-    sub[k].classList.add("on");
-  }
+  $(".menu").mouseleave(function(){
+    $(".bg").css("opacity", "0");
+    $(".sub>li").removeClass("on");
+
+  })
+
+  
 })
+
+
 
 AOS.init({ offset:200 });
