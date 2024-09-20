@@ -1,5 +1,4 @@
 
-
 $(function(){
 
   $(".gnb li").mouseenter(function(){
@@ -14,7 +13,6 @@ $(function(){
     $(".sub>li").removeClass("on");
 
   })
-
   
 })
 
