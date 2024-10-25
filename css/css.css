@@ -1,3 +1,4 @@
+
 @charset "utf-8";
 
 *{margin: 0; padding: 0;}
@@ -18,22 +19,49 @@ src: url('./woff2/PretendardVariable.woff2') format('woff2-variations');
 
 .videowrap{width: 100%; height: 100%; position: absolute; z-index: -1; overflow:hidden;}
 .videowrap video{width: 100%; height: 100vh; object-fit: cover; transform: scale(1.1);}
+.menuwrap{width: 100%;height: 90px; overflow: hidden;}
+.menuwrap.on{position: fixed;left: 0;top: 0;height: 90px;}
+.menuwrap.active{background: #fff;z-index: 999;position: fixed;left: 0;top: 0;}
+.menuwrap.Hactive{height: 300px; overflow: visible;}
 
 .menulogo{opacity: 0; transition: 0.3s;}
-.menulogo::after{ position: absolute; content: ""; background-image: url(../images/logo_bottom.svg); background-size: contain ; background-repeat: no-repeat ;left: -15%; top: 50%; transform: translateY(-50%); width: 130px; height: 40px; }
-
-.menu{position: relative; width: 100%; max-width: 1280px; margin: 0 auto; }
-.menu.on{position: fixed; width: 100%; max-width: 1280px; left: 50%; transform: translateX(-50%); top: 0; z-index: 999;}
-.menu .gnb{display: flex; flex-direction: row; height: 90px; margin: 0 auto;justify-content: center; column-gap: 85px;align-items: center;text-align: center ;top: 62px;}
-.menu .gnb>li{position: relative;}
-.menu .gnb>li>a{font: 500 17px pretendard;color: #fff;  letter-spacing: 0.5px;}
-.menu .gnb>li>a::after{content: ""; position: absolute; width: 100%; transform: scaleX(0); height: 1px; left: 0; bottom: -5px; background: #fff; transform: scaleX(0); transition: 0.5s linear;transform-origin: left bottom; }
-.menu .gnb>li:hover a::after{animation: mouseenter 0.4s linear forwards;}
+.menulogo::after{ position: absolute; content: ""; background-image: url(../images/logo_bottom.svg); background-size: contain ; background-repeat: no-repeat ;left: -15%; top: 50%; transform: translateY(-50%); width: 130px; height: 40px; filter: brightness(100);}
+.menulogo.on::after{ filter: brightness(0);}
+.menu{position: relative; width: 100%; max-width: 1280px; margin: 0 auto; color: #fff;}
+.menu.on{position: fixed; width: 1280px; left: 50%; transform: translateX(-50%); top: 0; z-index: 999;}
+.menu .gnb{display: flex; flex-direction: row; height: 90px; margin: 0 auto;justify-content: center; align-items: center;text-align: center ;top: 62px;}
+.menu .gnb>li{position: relative;width: 16.5%;}
+.menu .gnb>li>a{font: 500 17px pretendard;color: #fff;  letter-spacing: 0.5px;display: inline-block;position: relative;}
+.menu .gnb>li>a::after{ content: "";
+	position: absolute;
+	left: 0;
+	bottom: -3px;
+	width: 100%;
+	height: 1px;
+	background: #fff;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 1s;}
+	.menu .gnb>li>a.on::after {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+	.menu .gnb>li>a.active::after{
+		background: #000;
+	}
+	.menu .gnb>li>a.on1::after {
+		transform: scaleX(1);
+		transform-origin: right;
+	}
+	.menu .gnb>li:not(:hover) a.on1::after {
+		transform: scaleX(0);
+		transform-origin: right;
+	}
 
 /*스크롤시 메뉴변화*/
 .menu .gnb>li>a.scroll{color: #000;}
-.menu.scroll{background-color: #fff;}
-.bg.scroll{background: #fff}
+.menu.scroll{background-color: #fff;position: fixed;top: 0;z-index: 999;left: 50%;transform: translateX(-50%);}
+.bg.scroll{background: #fff; width: 100%;}
 .sub a.scroll{color: #000;}
 
 
@@ -45,6 +73,34 @@ src: url('./woff2/PretendardVariable.woff2') format('woff2-variations');
 .sub>li>ul{display: grid; grid-template-columns: repeat(3,1fr); grid-template-rows: repeat(3,1fr); width: 100%; height: 101px; margin: 0 auto; column-gap: 85px;}
 .sub a{display: inline-block; color: #fff; font-size: 17px;  line-height: 30px;position: relative; z-index: 9;}
 
+.sub>li>ul>li a::after{content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 1px;
+	background: #fff;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 1s;}
+
+	.sub>li>ul>li>a.on::after {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+	.sub>li>ul>li>a.active::after{
+		background: #000;
+	}
+	.sub>li>ul>li>a.on1::after {
+		transform: scaleX(1);
+		transform-origin: right;
+	}
+	.sub>li>ul>li:not(:hover) a.on1::after {
+		transform: scaleX(0);
+		transform-origin: right;
+	}
+
+
 .sub>li>ul>li:nth-child(1){grid-column: 1; grid-row: 1}
 .sub>li>ul>li:nth-child(2){grid-column: 1; grid-row: 2}
 .sub>li>ul>li:nth-child(3){grid-column: 1; grid-row: 3}
@@ -52,9 +108,6 @@ src: url('./woff2/PretendardVariable.woff2') format('woff2-variations');
 .sub>li>ul>li:nth-child(5){grid-column: 2; grid-row: 2}
 .sub>li>ul>li:nth-child(6){grid-column: 2; grid-row: 3}
 
-.sub a::after{content: "";position: absolute;height: 1px; width: 100%;transform: scaleX(0); background-color: #fff; left: 0; bottom: 0;}
-.sub a:hover::after{animation: mouseenter 0.3s linear forwards;}
-.sub a:not(:hover)::after{animation:mouseleave 0.4s linear}
 
 .text{padding: 120px 0; width: 1223px; margin: 0 auto; text-align: center;}
 .text p{font: 200 18px pretendard; line-height: 40px;}
@@ -149,8 +202,26 @@ grid-template-columns: 590px 296px 296px 294px 296px ; grid-template-rows: repea
 footer .logo{text-align: center; padding: 50px 0 20px;}
 footer .link{display: flex; flex-direction: row; justify-content: center;align-items: center; gap: 40px;padding: 23px 0; border-bottom: 1px solid #ddd;}
 footer .link a{font: 400 15px pretendard; position: relative;}
-footer .link a::after{content: "";position: absolute;height: 1px; width: 100%;transform: scaleX(0);; background-color: #000; left: 0; bottom: -2px; }
-footer .link a:hover::after{animation: mouseenter 0.5s linear forwards;}
+footer .link li a::after{ content: "";
+	position: absolute;
+	left: 0;
+	bottom: -3px;
+	width: 100%;
+	height: 1px;
+	background: #000;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.7s;}
+
+	footer .link li a.on::after {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+	footer .link li:not(:hover) a.on1::after {
+		transform: scaleX(0);
+		transform-origin: right;
+	}
+
 footer .copyright{padding: 22px 0; font:200 13px pretendard; text-align: center; color:  #999999;}
 
 @keyframes mouseenter {
